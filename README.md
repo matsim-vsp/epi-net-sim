@@ -26,7 +26,6 @@ For large parameter combinations, it may make sense to run the toy model on a co
 
 #SBATCH -N 1
 #SBATCH -t 01:30:00
-#SBATCH -A bzz0020
 
 module load julia
 
