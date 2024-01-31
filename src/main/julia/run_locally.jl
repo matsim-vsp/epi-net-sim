@@ -1,3 +1,5 @@
+# this code was written for Julia 1.9.x
+
 include("model.jl")
 
 params = Dict(

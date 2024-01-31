@@ -1,27 +1,10 @@
-# Questions:
-# 1) are the same # of agents activated in each iteration?
-# 2) how exactly does randomness work...? Should include the rng into the network generation?
-# 3) Is the Xoshiro rng the correct random number generator?
-# 4) is it ok that seeds are just 1->100
-# 5) Are all nodes full?
-
-# first change infectious --> presymptomatic (I -> P)
-# then change showingSymptoms -> Infectious 
-
+# this code was written for Julia 1.9.x
 
 # Import neccessary packages
 using Pkg
-Pkg.add("Agents")
-Pkg.add("Random")
-Pkg.add("Graphs")
-Pkg.add("DataFrames")
-Pkg.add("Statistics")
-Pkg.add("CSV")
-Pkg.add("Dates")
-
-
-# Pkg.activate("src/julia/")
+Pkg.activate(@__DIR__)
 using Agents, Random, Graphs, DataFrames, Statistics, CSV, Dates
+
 
 # Define Agent
 @agent Person_Sim GraphAgent begin
@@ -38,7 +21,7 @@ function run_model(params)
         # sets output directory. If running on cluster, output folder is specified by start_multiple_sh. If run locally, a new folder will be created w/ current datetime 
         if ismissing(params[:output_folder])
             output_path = "data/" * replace(first(string(now()), 19), ":" => "")
-            mkdir(output_path)
+            mkpath(output_path)
 
         else
             output_path = params[:output_folder]
