@@ -57,8 +57,8 @@ function run_model(params)
                     
                     # empty dictionary, which will be filled with respective stat (e.g. susceptible count) for each model run (all iterations, rows of matrix) for each seed (columns of matrix)
                     results = Dict(
-                        "shortestPath" => [],
-                        "clusteringCoefficient" => [],
+                        # "shortestPath" => [],
+                        # "clusteringCoefficient" => [],
                         "susceptible" => [],
                         "exposed" => [],
                         "infectious" => [],
@@ -82,23 +82,25 @@ function run_model(params)
                             params[:mean_degree]
                         )
 
-                        local_path_length_per_node = []
-                        local_clustering_coeff_per_node = []
-                        for i in 1:params[:n_nodes]
-                            push!(local_path_length_per_node, mean(Graphs.dijkstra_shortest_paths(net,i).dists))
-                            push!(local_clustering_coeff_per_node, Graphs.local_clustering_coefficient(net,i))
+                        # local_path_length_per_node = []
+                        # local_clustering_coeff_per_node = []
+                        # for i in 1:params[:n_nodes]
+                        #     push!(local_path_length_per_node, mean(Graphs.dijkstra_shortest_paths(net,i).dists))
+                        #     push!(local_clustering_coeff_per_node, Graphs.local_clustering_coefficient(net,i))
 
-                        end
+                        # end
 
-                        global_mean_path_length = [mean(local_path_length_per_node)]
-                        global_mean_clustering_coefficient = [mean(local_clustering_coeff_per_node)]
+                        # global_mean_path_length = [mean(local_path_length_per_node)]
+                        # global_mean_clustering_coefficient = [mean(local_clustering_coeff_per_node)]
 
-                        println(string("seed: ", seed))
-                        println(string("global mean path length: ", global_mean_path_length))
-                        println(string("global mean clustering coefficient: ", global_mean_clustering_coefficient))
+                        # println(string("seed: ", seed))
+                        # println(string("global mean path length: ", global_mean_path_length))
+                        # println(string("global mean clustering coefficient: ", global_mean_clustering_coefficient))
+                        # println(string("is completely connected : ", length(connected_components(net))))
 
-                        push!(results["shortestPath"],global_mean_path_length)
-                        push!(results["clusteringCoefficient"],global_mean_clustering_coefficient)
+
+                        # push!(results["shortestPath"],global_mean_path_length)
+                        # push!(results["clusteringCoefficient"],global_mean_clustering_coefficient)
 
 
 
